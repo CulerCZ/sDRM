@@ -36,5 +36,8 @@ function dataNorm = generateData(dataRaw, dataBG, posInfo, options)
     dataNorm.drpMap = reshape(dataNorm.drplist,num_x,num_y,num_pixel);
     dataNorm.posInfo = posInfo;
 
+    plotPara = calcPlotPixels(posInfo,resNum=20);
+    dataNorm.plotPara = plotPara;
+
     fprintf("Dataset is reday for further processing!\n");
 end
