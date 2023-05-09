@@ -5,6 +5,7 @@ function plotDRP(drp,plotPara,options)
         options.cMap (1,1) string="jet"
         options.format (1,1) string="3d"
         options.caxis (1,2) double=[0 1]
+        options.colorbar (1,1) logical = false
     end
     x3 = plotPara.x;
     y3 = plotPara.y;
@@ -19,8 +20,11 @@ function plotDRP(drp,plotPara,options)
     axis equal
     colormap(gca,options.cMap)
     warning('off')
-    set(gca,"Position",[0 0 1 1],"Visible","off")
+    set(gca,"Visible","off")
     clim(gca,options.caxis)
     warning('on')
+    if options.colorbar
+        colorbar("FontSize",14,"FontWeight","bold")
+    end
 
 end
