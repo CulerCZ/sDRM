@@ -1,10 +1,10 @@
-function drp_selected = showSampleDRP(dataNorm, plotPara, options)
+function [drp_selected, x_output, y_output] = showSampleDRP(dataNorm, plotPara, options)
     arguments
         dataNorm struct
         plotPara struct
         options.cMap (1,1) string = "jet"
     end
-    figure('Name','demo_fig');
+    f1 = figure('Name','demo_fig');
     fig_temp = median(dataNorm.drpMap,3);
     imshow(fig_temp,[min(fig_temp,[],"all"),max(fig_temp,[],"all")],'Border','tight');
     colormap("parula")
@@ -13,12 +13,13 @@ function drp_selected = showSampleDRP(dataNorm, plotPara, options)
     nn = length(y);
     y = fix(y);
     x = fix(x);
-    close(findobj('type','figure','name','demo_fig'));
+    close(f1);
     
     figure('Position',[200,200,200*(nn+1),200])
     tiledlayout(1,nn+1,'TileSpacing','tight','Padding','compact')
-    nexttile(1)
+    ax1 = nexttile(1);
     imshow(fig_temp,[min(fig_temp,[],"all"),max(fig_temp,[],"all")],'Border','tight')
+    colormap(ax1,"parula")
     hold on
     scatter(x,y,72,'x','k')
     for ii = 1:nn
@@ -36,4 +37,6 @@ function drp_selected = showSampleDRP(dataNorm, plotPara, options)
         drp_selected(ii,:) = squeeze(dataNorm.drpMap(x_pos,y_pos,:));
         plotDRP(drp_selected(ii,:), plotPara,cMap=options.cMap)
     end
+    x_output = y;
+    y_output = x;
 end
