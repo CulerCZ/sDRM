@@ -31,7 +31,8 @@ function dataNorm = generateData(dataRaw, dataBG, posInfo, options)
     dataNorm.drplist = reshape(dataNorm.drpMap, [], num_pixel);
     dataNorm.drplist = (dataNorm.drplist + options.offset) * options.gain;
     dataNorm.drplist(dataNorm.drplist < 0) = 0;
-    dataNorm.drplist = dataNorm.drplist / prctile(dataNorm.drplist,95,"all");
+    dataNorm.drplist = dataNorm.drplist / prctile(dataNorm.drplist,98,"all");
+    
     dataNorm.drplist(dataNorm.drplist > 1) = 1;
     dataNorm.drpMap = reshape(dataNorm.drplist,num_x,num_y,num_pixel);
     dataNorm.posInfo = posInfo;
