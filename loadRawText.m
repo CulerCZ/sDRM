@@ -5,5 +5,5 @@ function dataRaw = loadRawText()
     dataFileName = fullfile(path, filename);
     
     dataRaw = load(dataFileName);
-    fprintf("Dataset load successfully from .txt file!\n");
+    fprintf("Dataset load successfully from %s!\n",filename);
 end
