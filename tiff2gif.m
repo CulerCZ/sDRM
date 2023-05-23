@@ -2,9 +2,9 @@
 
 imageFolder = "./tempFigures";
 outputFolder = "./tempFigures";
-gifFile = "sigmoidResult_DRPcheck.gif";
-for idx = 1:9
-    imgName = sprintf("sigmoid_func_%02d_DRPcheck.tiff",idx);
+gifFile = "offset_errorMap.gif";
+for idx = 1:41
+    imgName = sprintf("offset_%02d_errorMap.tiff",(idx-1)*2);
     img = imread(fullfile(imageFolder,imgName));
     [Q,map] = rgb2ind(img,256);
     if idx == 1
